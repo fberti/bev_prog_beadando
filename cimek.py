@@ -4,6 +4,8 @@ GitHub Repository: https://github.com/fberti/bev_prog_beadando
 
 Description:
 A Bevezetés a programozásba c. tantárgy beadandó feladata.
+A 2014. májusi emelt szintű Informatika gyakorlati vizsga 4. feladata
+Cím: IPv6
 """
 import os
 import ipaddress
