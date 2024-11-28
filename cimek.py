@@ -1,3 +1,10 @@
+"""
+Author: Fehérvári Norbert
+GitHub Repository: https://github.com/fberti/bev_prog_beadando
+
+Description:
+A Bevezetés a programozásba c. tantárgy beadandó feladata.
+"""
 import os
 import ipaddress
 import sys
