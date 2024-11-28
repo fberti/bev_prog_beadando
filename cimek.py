@@ -143,6 +143,79 @@ def compress_ipv6(ip_address: str) -> str:
     return compressed_ip
 
 
+def tests():
+    test_ips = [
+        "2001:0e59:000b:0000:00ab:0000:06d0:925c",
+        "2001:0e00:000f:fe00:4281:a004:0c00:3827",
+        "fc05:00f3:c00a:b020:0200:0000:0500:ea99",
+        "fcf0:631e:00b0:fe00:3000:0507:0c00:f09b",
+        "fc0f:30eb:dd3f:0090:90b1:30b5:0000:2909",
+        "fc60:000b:4003:3000:8a0c:0005:c000:00cf",
+        "2001:0e20:1160:0a28:0800:7000:c000:0063",
+        "fcc0:45c0:9404:00e2:d007:0013:be70:9071",
+        "2001:0e04:0800:c300:8100:0000:5040:de09",
+        "fd00:7000:0002:0550:0171:0000:c000:9c9b",
+        "2001:0db8:0001:0f50:0100:0c00:0170:0041",
+        "2001:0e00:43a0:0030:2e7b:0000:0200:4104",
+        "2001:0e46:9050:0f70:3b07:f810:0104:000f",
+        "2001:0db8:0902:0000:60ae:0065:0d00:02ae",
+        "2001:0db8:0600:0010:a00e:1001:8b9e:00db",
+        "2001:0db8:00e9:e570:bd00:08a0:9fc0:c04d",
+        "fc05:00c0:c08c:0f00:0d00:fcc0:0093:7008",
+        "fc11:0000:0000:0f00:0000:0000:0000:2222",
+        "fc11:0000:0000:0000:00a0:0000:0000:2222",
+        "fc11:0000:0000:0a00:00a0:0000:0000:2222",
+    ]
+
+    # Teszt get_smallest_ip
+    assert (
+        get_smallest_ip(test_ips) == "2001:0db8:0001:0f50:0100:0c00:0170:0041"
+    ), "get_smallest_ip failed"
+
+    # Teszt ip_counter_by_type
+    assert (
+        ip_counter_by_type(DOK_CIMEK, test_ips) == 4
+    ), "ip_counter_by_type for DOK_CIMEK failed"
+    assert (
+        ip_counter_by_type(GLOBAL_EGYEDI_CIMEK, test_ips) == 6
+    ), "ip_counter_by_type for GLOBAL_EGYEDI_CIMEK failed"
+    assert (
+        ip_counter_by_type(HELYI_EGYEDI_CIMEK, test_ips) == 10
+    ), "ip_counter_by_type for HELYI_EGYEDI_CIMEK failed"
+
+    # Teszt gather_ip_by_zero_count
+    assert (
+        len(gather_ip_by_zero_count(test_ips, 18)) == 8
+    ), "gather_ip_by_zero_count failed"
+
+    # Teszt shorten_ip
+    assert (
+        shorten_ip("2001:0e59:000b:0000:00ab:0000:06d0:925c")
+        == "2001:e59:b:0:ab:0:6d0:925c"
+    ), "shorten_ip failed"
+    assert (
+        shorten_ip("7d20:0000:0000:0000:3b95:0565") == "7d20:0:0:0:3b95:565"
+    ), "shorten_ip failed"
+
+    # Teszt compress_ipv6 function
+    assert (
+        compress_ipv6("fc11:0000:0000:0f00:0000:0000:0000:2222") == "fc11:0:0:f00::2222"
+    ), "compress_ipv6 failed"
+    assert (
+        compress_ipv6("fc11:0000:0000:0000:00a0:0000:0000:2222") == "fc11::a0:0:0:2222"
+    ), "compress_ipv6 failed"
+    assert (
+        compress_ipv6("fc11:0000:0000:0a00:00a0:0000:0000:2222")
+        == "fc11::a00:a0:0:0:2222"
+    ), "compress_ipv6 failed"
+    assert (
+        compress_ipv6("fc00:0610:0f00:89f0:00f0:0ed2:0000:000d")
+        == "Nem rövidíthető tovább."
+    ), "compress_ipv6 failed"
+
+    print("All tests passed!")
+
+
 def main():
     # 1. feladat - beolvasás -----------------
     # print("\n1. feladat\n")
@@ -201,3 +274,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    tests()
