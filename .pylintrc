@@ -1,0 +1,7 @@
+[MASTER]
+disable=
+    C0114, # missing-module-docstring
+    C0116, # missing-method-docstring
+    C0115, # missing-class-docstring
+    C0200, # [consider-using-enumerate]
+    W1514  # [unspecified-encoding]

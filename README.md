@@ -1,0 +1,1 @@
+## Bevezetés a programozásba c. tantárgy beadandó feladata
