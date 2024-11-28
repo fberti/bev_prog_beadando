@@ -1,5 +1,6 @@
 import os
 import ipaddress
+import sys
 
 DOK_CIMEK = ["2001:0db8"]
 GLOBAL_EGYEDI_CIMEK = ["2001:0e"]
@@ -273,5 +274,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-    tests()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "-t":
+            main()
+            tests()
+        else:
+            print("Nincs ilyen argumentum. Futtatás teszttel: python cimek.py -t")
+    else:
+        main()

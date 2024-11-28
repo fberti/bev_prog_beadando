@@ -4,3 +4,7 @@
 ```sh
 python -u cimek.py
 ```
+### Futtatás teszttel
+```sh
+python -u cimek.py -t
+```
